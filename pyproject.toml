@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "elastic"
+version = "0.1.0"
+description = "ShellElastic: scalable elastic pretraining with simultaneous maximal updates and hyperparameter transfer"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Can Jin" }]
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.6",
+    "numpy",
+    "omegaconf>=2.3",
+    "pyyaml",
+    "safetensors",
+]
+
+[project.optional-dependencies]
+kernels = ["liger-kernel==0.7.0"]
+data = ["webdataset>=1.0.2,<1.1", "fsspec", "huggingface_hub>=0.24"]
+eval = ["transformers>=4.40", "datasets>=2.20", "torchmetrics>=1.0"]
+logging = ["wandb"]
+analysis = ["scipy>=1.10"]
+dev = ["pytest"]
+all = ["liger-kernel==0.7.0", "webdataset>=1.0.2,<1.1", "fsspec", "huggingface_hub>=0.24", "transformers>=4.40",
+       "datasets>=2.20", "torchmetrics>=1.0", "wandb", "scipy>=1.10"]
+
+[tool.setuptools.packages.find]
+include = ["elastic*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = ["gpu: requires a CUDA GPU"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"

@@ -1,0 +1,3 @@
+inherit: ../../scale1/shellelastic.yaml
+run: {name: ablation_optimizer_clip_0.5}
+train: {grad_clip: 0.5}

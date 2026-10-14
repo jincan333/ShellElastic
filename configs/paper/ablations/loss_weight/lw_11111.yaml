@@ -1,0 +1,4 @@
+inherit: ../../scale1/shellelastic.yaml
+run: {name: ablation_loss_weight_lw_11111}
+objective:
+  loss_weights: [1, 1, 1, 1, 1]

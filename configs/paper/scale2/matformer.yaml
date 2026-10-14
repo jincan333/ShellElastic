@@ -1,0 +1,36 @@
+inherit: ../common.yaml
+run: {name: scale2_matformer}
+model:
+  type: dense
+  vocab_size: 50432
+  seq_len: 2048
+  n_layers: 32
+  mode: ffn
+  base_width: 1024
+  supported: [8, 17, 27, 38, 51]
+  head_dim: 128
+  ffn_hidden: 128
+  gated_attention: true
+  norm: rms
+  norm_eps: 1.0e-05
+  residual_scale: 1.0
+  readout_scaling: init_lr
+  parameterization: mu_elastic
+  init_std: 0.0033
+  alpha: learnable
+  ffn_expansion: 0.125
+  width_multiplier: 8.0
+  internal_scaling: true
+  trained: [8, 17, 27, 38, 51]
+objective:
+  z_loss: 0.0001
+  loss_weights: [1, 1, 1, 1, 1]
+  selection: random
+optim:
+  lr: 0.002
+  weight_decay: 0.01
+  betas: [0.95, 0.95]
+  eps: 1.0e-14
+schedule: {decay_start: 40000}
+data: {batch_size: 32, eval_batch_size: 32}
+train: {steps: 50000, shard_size: 4, activation_checkpointing: 1/2, val_every: 5000}

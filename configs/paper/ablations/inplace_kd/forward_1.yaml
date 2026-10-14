@@ -1,0 +1,6 @@
+inherit: ../../scale1/shellelastic.yaml
+run: {name: ablation_inplace_kd_forward_1}
+objective:
+  distill: max
+  distill_kl: forward
+  distill_weights: [1, 1, 1, 1, 0.0]

@@ -1,0 +1,7 @@
+inherit: ../../scale1/shellelastic.yaml
+run: {name: ablation_ensemble_kdensemble}
+objective:
+  distill: ensemble
+  distill_kl: forward
+  distill_weights: [0.5, 0.5, 0.5, 0.5, 0.5]
+  ensemble_weighting: loss_weight

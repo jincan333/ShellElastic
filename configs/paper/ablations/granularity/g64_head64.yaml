@@ -1,0 +1,9 @@
+inherit: ../../scale1/shellelastic.yaml
+run: {name: ablation_granularity_g64_head64}
+model:
+  base_width: 64
+  ffn_hidden: 64
+  head_dim: 64
+  supported: [8, 10, 12, 14, 16]
+  trained: [8, 10, 12, 14, 16]
+  width_multiplier: 0.5

@@ -1,0 +1,48 @@
+inherit: ../common.yaml
+run: {name: scale1_sampled_standalone}
+model:
+  type: shell
+  vocab_size: 50432
+  seq_len: 2048
+  n_layers: 32
+  base_width: 384
+  supported: [1]
+  head_dim: 64
+  ffn_hidden: 1536
+  gated_attention: true
+  norm: rms
+  norm_eps: 1.0e-05
+  trunk_norm: group
+  terminal_norm: full
+  readout: separate
+  readout_scaling: init_lr
+  residual_scale: 1.0
+  parameterization: mu_elastic
+  init_std: 0.0033
+  alpha: 1.0
+  ffn_expansion: 4.0
+  width_multiplier: 3.0
+  internal_scaling: true
+  matmul: pad
+objective: {z_loss: 0.0001}
+optim:
+  lr: 0.00447
+  weight_decay: 0.0224
+  betas: [0.75, 0.75]
+  eps: 4.47e-15
+schedule: {decay_start: 20000}
+data: {batch_size: 16, eval_batch_size: 16}
+train: {steps: 25000, shard_size: 4, activation_checkpointing: 3/4, val_every: 2500}
+multi:
+  selection: random
+  models:
+  - name: standalone_d384
+    model: {}
+  - name: standalone_d448
+    model: {base_width: 448, ffn_hidden: 1792, width_multiplier: 3.5}
+  - name: standalone_d512
+    model: {base_width: 512, ffn_hidden: 2048, width_multiplier: 4.0}
+  - name: standalone_d576
+    model: {base_width: 576, ffn_hidden: 2304, width_multiplier: 4.5}
+  - name: standalone_d640
+    model: {base_width: 640, ffn_hidden: 2560, width_multiplier: 5.0}

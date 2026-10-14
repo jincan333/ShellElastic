@@ -1,0 +1,36 @@
+inherit: ../common.yaml
+run: {name: scale1_fully_elastic}
+model:
+  type: dense
+  vocab_size: 50432
+  seq_len: 2048
+  n_layers: 32
+  mode: full
+  base_width: 64
+  supported: [6, 7, 8, 9, 10]
+  head_dim: 64
+  ffn_hidden: 256
+  gated_attention: true
+  norm: rms
+  norm_eps: 1.0e-05
+  residual_scale: 1.0
+  readout_scaling: init_lr
+  parameterization: mu_elastic
+  init_std: 0.0033
+  alpha: learnable
+  ffn_expansion: 4.0
+  width_multiplier: 0.5
+  internal_scaling: true
+  trained: [6, 7, 8, 9, 10]
+objective:
+  z_loss: 0.0001
+  loss_weights: [1, 1, 1, 1, 1]
+  selection: random
+optim:
+  lr: 0.002
+  weight_decay: 0.01
+  betas: [0.95, 0.95]
+  eps: 1.0e-14
+schedule: {decay_start: 20000}
+data: {batch_size: 16, eval_batch_size: 16}
+train: {steps: 25000, shard_size: 4, activation_checkpointing: 3/4, val_every: 2500}

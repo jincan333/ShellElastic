@@ -1,0 +1,5 @@
+inherit: ../scale1/shellelastic.yaml
+run: {name: arch_search_w15555678}
+model:
+  supported: [1, 5, 6, 7, 8]
+  trained: [1, 5, 6, 7, 8]

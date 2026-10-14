@@ -1,0 +1,5 @@
+inherit: random.yaml
+run: {name: ablation_steps_random_roundrobin}
+objective:
+  schedule: [0/5, 1/5, 2/5, 3/5, 4/5]
+  selection: schedule

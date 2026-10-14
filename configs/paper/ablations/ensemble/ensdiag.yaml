@@ -1,0 +1,3 @@
+inherit: ../../scale1/shellelastic.yaml
+run: {name: ablation_ensemble_ensdiag}
+objective: {ensemble_diagnostics: true}

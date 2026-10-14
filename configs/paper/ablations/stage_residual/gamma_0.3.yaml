@@ -1,0 +1,3 @@
+inherit: ../../scale1/shellelastic.yaml
+run: {name: ablation_stage_residual_gamma_0.3}
+model: {stage_grad_scale: 0.3}

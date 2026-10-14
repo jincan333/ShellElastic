@@ -1,0 +1,16 @@
+# Benchmarks evaluated at every validation during training (5-shot).
+icl_tasks:
+  - label: arc_easy
+    dataset_uri: world_knowledge/arc_easy.jsonl
+    num_fewshot: [5]
+    icl_task_type: multiple_choice
+    continuation_delimiter: "\nAnswer: "
+  - label: piqa
+    dataset_uri: commonsense_reasoning/piqa.jsonl
+    num_fewshot: [5]
+    icl_task_type: multiple_choice
+    continuation_delimiter: "\nAnswer: "
+  - label: hellaswag
+    dataset_uri: language_understanding/hellaswag.jsonl
+    num_fewshot: [5]
+    icl_task_type: multiple_choice

@@ -1,0 +1,4 @@
+inherit: ../../scale1/shellelastic.yaml
+run: {name: ablation_ensemble_router}
+model: {width_router: true}
+objective: {router_all_width_ce: 0.01, router_tau: 1}

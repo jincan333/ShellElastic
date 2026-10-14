@@ -1,0 +1,44 @@
+inherit: ../common.yaml
+run: {name: scale1_shellelastic}
+model:
+  type: shell
+  vocab_size: 50432
+  seq_len: 2048
+  n_layers: 32
+  base_width: 128
+  supported: [4, 5, 6, 7, 8]
+  head_dim: 128
+  ffn_hidden: 128
+  gated_attention: true
+  norm: rms
+  norm_eps: 1.0e-05
+  trunk_norm: group
+  terminal_norm: full
+  separate_terminal_norms: true
+  readout: separate
+  readout_scaling: init_lr
+  residual_scale: 1.0
+  parameterization: mu_elastic
+  init_std: 0.0033
+  alpha: learnable
+  ffn_expansion: 1.0
+  width_multiplier: 1.0
+  internal_scaling: true
+  trained: [4, 5, 6, 7, 8]
+  stage_grad_scale: 1.0
+  width_router: false
+  width_router_hidden: 256
+  matmul: slab
+  fused_norm: true
+objective:
+  z_loss: 0.0001
+  loss_weights: [1, 1, 1, 1, 4]
+  selection: all
+optim:
+  lr: 0.002
+  weight_decay: 0.01
+  betas: [0.95, 0.95]
+  eps: 1.0e-14
+schedule: {decay_start: 20000}
+data: {batch_size: 16, eval_batch_size: 16}
+train: {steps: 25000, shard_size: 4, activation_checkpointing: 1/2, val_every: 2500}

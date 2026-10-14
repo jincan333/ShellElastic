@@ -1,0 +1,3 @@
+inherit: ../../scale1/shellelastic.yaml
+run: {name: ablation_readout_shared}
+model: {readout: shared, separate_terminal_norms: false}

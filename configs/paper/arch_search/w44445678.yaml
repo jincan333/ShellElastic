@@ -1,0 +1,2 @@
+inherit: ../scale1/shellelastic.yaml
+run: {name: arch_search_w44445678}

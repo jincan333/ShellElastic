@@ -1,0 +1,3 @@
+inherit: ../../scale1/shellelastic.yaml
+run: {name: ablation_terminal_norm_group_local}
+model: {terminal_norm: trunk}

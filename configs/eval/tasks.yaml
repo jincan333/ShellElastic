@@ -1,0 +1,63 @@
+# Downstream evaluation after training: 13 tasks, 5-shot (LLM Foundry ICL task format).
+# dataset_uri is relative to eval.data_dir; fetch the files with scripts/download_eval_data.py.
+icl_tasks:
+  - label: svamp
+    dataset_uri: symbolic_problem_solving/svamp.jsonl
+    num_fewshot: [5]
+    icl_task_type: generation_task_with_answers
+    continuation_delimiter: "\nUsing the formula below:\n"
+    cot_delimiter: " #### "
+    question_prelimiter: "Q: "
+  - label: mmlu
+    dataset_uri: world_knowledge/mmlu.jsonl
+    num_fewshot: [5]
+    icl_task_type: multiple_choice
+    continuation_delimiter: "\nAnswer: "
+  - label: arc_easy
+    dataset_uri: world_knowledge/arc_easy.jsonl
+    num_fewshot: [5]
+    icl_task_type: multiple_choice
+    continuation_delimiter: "\nAnswer: "
+  - label: arc_challenge
+    dataset_uri: world_knowledge/arc_challenge.jsonl
+    num_fewshot: [5]
+    icl_task_type: multiple_choice
+    continuation_delimiter: "\nAnswer: "
+  - label: copa
+    dataset_uri: commonsense_reasoning/copa.jsonl
+    num_fewshot: [5]
+    icl_task_type: multiple_choice
+  - label: piqa
+    dataset_uri: commonsense_reasoning/piqa.jsonl
+    num_fewshot: [5]
+    icl_task_type: multiple_choice
+    continuation_delimiter: "\nAnswer: "
+  - label: hellaswag
+    dataset_uri: language_understanding/hellaswag.jsonl
+    num_fewshot: [5]
+    icl_task_type: multiple_choice
+  - label: winogrande
+    dataset_uri: language_understanding/winogrande.jsonl
+    num_fewshot: [5]
+    icl_task_type: schema
+  - label: lambada_openai
+    dataset_uri: language_understanding/lambada_openai.jsonl
+    num_fewshot: [5]
+    icl_task_type: language_modeling
+  - label: boolq
+    dataset_uri: reading_comprehension/boolq.jsonl
+    num_fewshot: [5]
+    icl_task_type: multiple_choice
+    continuation_delimiter: "\nAnswer: "
+  - label: agi_eval_lsat_rc
+    dataset_uri: reading_comprehension/agi_eval_lsat_rc.jsonl
+    num_fewshot: [5]
+    icl_task_type: multiple_choice
+  - label: agi_eval_lsat_lr
+    dataset_uri: reading_comprehension/agi_eval_lsat_lr.jsonl
+    num_fewshot: [5]
+    icl_task_type: multiple_choice
+  - label: agi_eval_sat_en
+    dataset_uri: reading_comprehension/agi_eval_sat_en.jsonl
+    num_fewshot: [5]
+    icl_task_type: multiple_choice

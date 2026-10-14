@@ -1,0 +1,19 @@
+# Settings shared by every paper run (Table 9; 8 GPUs; the global batch is data.batch_size x 8).
+run: {seed: 95}
+schedule: {min_ratio: 0.0, warmup_steps: 1000}
+data:
+  num_workers: 8
+  seed: 1
+  seq_len: 2048
+  squash_mask_left: true
+  target_mask_individual: 50400
+  target_mask_left: 50300
+  tokens: 115000000000
+  train_key: json.gz
+  train_sources: [data/dclm-baseline]
+  val_key: txt
+  val_sources: [data/c4-val]
+  vocab_size: 50432
+train: {ckpt_every: 500, final_eval: true, grad_clip: 4, keep_every: 5000, log_every: 50, skip_factor: 20, skip_start: 5000,
+  val_steps: 300}
+eval: {probe: configs/eval/probe.yaml}

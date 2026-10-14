@@ -1,0 +1,6 @@
+inherit: ../../scale1/shellelastic.yaml
+run: {name: ablation_inplace_kd_symmetric_0.5}
+objective:
+  distill: max
+  distill_kl: symmetric
+  distill_weights: [0.5, 0.5, 0.5, 0.5, 0.0]

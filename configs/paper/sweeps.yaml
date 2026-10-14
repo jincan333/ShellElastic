@@ -1,0 +1,52 @@
+# Hyperparameter-transfer sweeps (Section 4.2 and Appendix H). A run = one family's base config plus
+# one grid value (lr: at init_std 3.3e-3; init: at lr 2e-3; wd: at lr 2e-3 and init_std 3.3e-3).
+# Families with sp: true are also swept without muElastic (sp_overrides added).
+# extra_values: grid values swept only by that family.
+# The grid centre of the muElastic sweeps is the base config itself.
+# Commands: python scripts/sweep.py configs/paper/sweeps.yaml [--family F] [--grid G] [--sp]
+grids:
+  lr:
+    key: optim.lr
+    values: [0.0001, 0.00033, 0.001, 0.002, 0.0033, 0.01, 0.033]
+  init:
+    key: model.init_std
+    values: [0.0001, 0.00033, 0.001, 0.0033, 0.01, 0.033]
+  wd:
+    key: optim.weight_decay
+    values: [0.001, 0.0033, 0.01, 0.033, 0.1, 0.33, 1.0]
+sp_overrides: {model.internal_scaling: false, model.alpha: 1.0, model.width_multiplier: 1.0, model.ffn_expansion: 1.0}
+families:
+  proxy:
+    base: proxy/standalone_d128.yaml
+    grids: [lr, init, wd]
+    sp: false
+  scale1_shellelastic:
+    base: scale1/shellelastic.yaml
+    grids: [lr, init, wd]
+    sp: true
+  scale1_fully_elastic:
+    base: scale1/fully_elastic.yaml
+    grids: [lr, init]
+    sp: true
+  scale1_matformer:
+    base: scale1/matformer.yaml
+    grids: [lr, init]
+    sp: true
+  scale2_shellelastic:
+    base: scale2/shellelastic.yaml
+    grids: [lr, init]
+    sp: true
+    extra_values:
+      init: [0.1]
+  scale2_fully_elastic:
+    base: scale2/fully_elastic.yaml
+    grids: [lr, init]
+    sp: true
+    extra_values:
+      init: [0.1]
+  scale2_matformer:
+    base: scale2/matformer.yaml
+    grids: [lr, init]
+    sp: true
+    extra_values:
+      init: [0.1]

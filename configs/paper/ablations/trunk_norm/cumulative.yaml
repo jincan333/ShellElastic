@@ -1,0 +1,3 @@
+inherit: ../../scale1/shellelastic.yaml
+run: {name: ablation_trunk_norm_cumulative}
+model: {trunk_norm: cumulative}

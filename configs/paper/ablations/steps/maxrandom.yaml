@@ -1,0 +1,3 @@
+inherit: ../../scale1/shellelastic.yaml
+run: {name: ablation_steps_maxrandom}
+objective: {selection: max_random}

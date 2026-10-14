@@ -1,0 +1,5 @@
+inherit: maxrandom.yaml
+run: {name: ablation_steps_maxrandom_roundrobin}
+objective:
+  schedule: [0/4, 1/4, 2/4, 3/4, 1/1]
+  selection: schedule

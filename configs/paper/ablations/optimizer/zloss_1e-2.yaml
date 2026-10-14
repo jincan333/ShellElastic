@@ -1,0 +1,3 @@
+inherit: ../../scale1/shellelastic.yaml
+run: {name: ablation_optimizer_zloss_1e-2}
+objective: {z_loss: 0.01}

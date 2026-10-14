@@ -1,0 +1,14 @@
+inherit: ../scale1/shellelastic.yaml
+run: {name: stairformer}
+model:
+  base_width: 208
+  ffn_expansion: 1.1346153846153846
+  ffn_hidden: 236
+  head_dim: 104
+  matmul: pad
+  readout: shared
+  separate_terminal_norms: false
+  supported: [1, 2, 3, 4, 5]
+  trained: [1, 2, 3, 4, 5]
+  trunk_norm: cumulative
+  width_multiplier: 1.625

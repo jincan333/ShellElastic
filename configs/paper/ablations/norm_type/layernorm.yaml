@@ -1,0 +1,3 @@
+inherit: ../../scale1/shellelastic.yaml
+run: {name: ablation_norm_type_layernorm}
+model: {norm: layer}

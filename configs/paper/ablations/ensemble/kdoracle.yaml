@@ -1,0 +1,8 @@
+inherit: ../../scale1/shellelastic.yaml
+run: {name: ablation_ensemble_kdoracle}
+objective:
+  distill: oracle
+  distill_kl: forward
+  distill_weights: [0.5, 0.5, 0.5, 0.5, 0.5]
+  oracle_beta: auto
+  oracle_target_entropy: 0.7

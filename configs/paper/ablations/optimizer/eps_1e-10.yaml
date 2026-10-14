@@ -1,0 +1,3 @@
+inherit: ../../scale1/shellelastic.yaml
+run: {name: ablation_optimizer_eps_1e-10}
+optim: {eps: 1.0e-10}

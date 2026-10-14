@@ -1,0 +1,35 @@
+inherit: ../common.yaml
+run: {name: scale3_standalone_d1216}
+model:
+  type: shell
+  vocab_size: 50432
+  seq_len: 2048
+  n_layers: 32
+  base_width: 1216
+  supported: [1]
+  head_dim: 64
+  ffn_hidden: 8816
+  gated_attention: true
+  norm: rms
+  norm_eps: 1.0e-05
+  trunk_norm: group
+  terminal_norm: full
+  readout: separate
+  readout_scaling: init_lr
+  residual_scale: 1.0
+  parameterization: mu_elastic
+  init_std: 0.0033
+  alpha: 1.0
+  ffn_expansion: 7.25
+  width_multiplier: 9.5
+  internal_scaling: true
+  matmul: pad
+objective: {z_loss: 0.0001}
+optim:
+  lr: 0.00141
+  weight_decay: 0.00707
+  betas: [0.975, 0.975]
+  eps: 1.41e-14
+schedule: {decay_start: 85000}
+data: {batch_size: 32, eval_batch_size: 32}
+train: {steps: 100000, shard_size: 8, activation_checkpointing: 1/1, val_every: 5000}
